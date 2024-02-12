@@ -2,6 +2,8 @@ import { Pressable, View } from "react-native";
 import { useState } from "react";
 import { Button, Modal, Portal, SegmentedButtons, Text, TextInput } from "react-native-paper";
 import { Calendar } from "react-native-calendars";
+import Styles from "../styles/Styles";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function AddWorkOut() {
 
@@ -26,19 +28,20 @@ export default function AddWorkOut() {
     }
 
     return (
-        <View>
+        <SafeAreaView style={Styles.container}>
             <Text variant='headlineLarge'> Work Out</Text>
-            <SegmentedButtons value={selection}
+            <SegmentedButtons style={Styles.segbut}
+            value={selection}
                 onValueChange={setSelection}
                 buttons={buttons}></SegmentedButtons>
-            <TextInput
+            <TextInput style={Styles.disDu}
                 keyboardType="number-pad"
                 mode='outlined'
                 label='Distance (km)'
                 value={distance}
                 onChangeText={setDistance}
             ></TextInput>
-            <TextInput
+            <TextInput style={Styles.disDu}
                 keyboardType="number-pad"
                 mode='outlined'
                 label='Duration (min)'
@@ -59,6 +62,6 @@ export default function AddWorkOut() {
 
 
 
-        </View>
+            </SafeAreaView>
     );
 }
