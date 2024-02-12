@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { DistanceContext, DurationContext } from './components/Contexts';
+import { WorkoutContext } from './components/Contexts';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Icon, MD3LightTheme, PaperProvider } from 'react-native-paper';
 import { NavigationContainer } from '@react-navigation/native';
@@ -14,19 +14,19 @@ import Styles from './styles/Styles';
 
 export default function App() {
 
-  const [distance, setDistance] = useState('');
-  const [duration, setDuration] = useState([]);
+  
+  const [workout, setWorkout] = useState([]);
 
   return (
-    <DistanceContext.Provider value={{ distance, setDistance }}>
-      <DurationContext.Provider value={{ duration, setDuration }}>
+    <WorkoutContext.Provider value={{ workout, setWorkout }}>
+      
         <PaperProvider theme={MD3LightTheme}>
           <SafeAreaProvider>
             <Navigation />
           </SafeAreaProvider>
         </PaperProvider>
-      </DurationContext.Provider>
-    </DistanceContext.Provider>
+    
+    </WorkoutContext.Provider>
   );
 }
 

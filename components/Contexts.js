@@ -1,6 +1,5 @@
 import { createContext } from "react";
 
-const DistanceContext = createContext();
-const DurationContext = createContext();
+const WorkoutContext = createContext();
 
-export {DistanceContext, DurationContext};
+export {WorkoutContext};

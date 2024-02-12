@@ -1,9 +1,10 @@
 import { Pressable, View } from "react-native";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Button, Modal, Portal, SegmentedButtons, Text, TextInput } from "react-native-paper";
 import { Calendar } from "react-native-calendars";
 import Styles from "../styles/Styles";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { WorkoutContext } from "./Contexts";
 
 export default function AddWorkOut() {
 
@@ -21,13 +22,17 @@ export default function AddWorkOut() {
 
     const showModal = () => setVisible(true);
     const hideModal = () => setVisible(false);
-
     
+ 
 
     function dateSelected(day) {
         setVisible(false);
         setDate(day.dateString);
     }
+
+   
+
+
 
     return (
         <SafeAreaView style={Styles.container}>
