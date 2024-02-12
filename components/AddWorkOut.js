@@ -22,6 +22,8 @@ export default function AddWorkOut() {
     const showModal = () => setVisible(true);
     const hideModal = () => setVisible(false);
 
+    
+
     function dateSelected(day) {
         setVisible(false);
         setDate(day.dateString);
@@ -29,7 +31,7 @@ export default function AddWorkOut() {
 
     return (
         <SafeAreaView style={Styles.container}>
-            <Text variant='headlineLarge'> Work Out</Text>
+            <Text variant='headlineLarge' > Work Out</Text>
             <SegmentedButtons style={Styles.segbut}
             value={selection}
                 onValueChange={setSelection}
@@ -58,7 +60,7 @@ export default function AddWorkOut() {
             <Button mode="contained-tonal" style={{marginTop:30}} onPress={showModal} icon="calendar">
                 {date ? date : ' '}
             </Button>
-            <Button mode="contained tonal" style={{marginTop:30}}>Add WorkOut</Button>
+            <Button mode="contained tonal"  style={{marginTop:30}}>Add WorkOut</Button>
 
 
 
