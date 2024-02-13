@@ -22,23 +22,28 @@ export default function AddWorkOut() {
 
     const showModal = () => setVisible(true);
     const hideModal = () => setVisible(false);
-    
- 
+
+    const { setWorkout } = useContext(WorkoutContext);
+
 
     function dateSelected(day) {
+        const selectedDate = new Date(day.dateString);
         setVisible(false);
-        setDate(day.dateString);
+        setDate(selectedDate.toLocaleDateString('fi-FI'));
     }
 
-   
+    function addWork() {
+        // const userexercise = {distance, duration, date};
+        // const modifiedWorkout = [...workout, userexercise];
+        // setWorkout(modifiedWorkout);
+        setWorkout(prev => [...prev, { distance, duration, date }]);
 
-
-
+    }
     return (
         <SafeAreaView style={Styles.container}>
             <Text variant='headlineLarge' > Work Out</Text>
             <SegmentedButtons style={Styles.segbut}
-            value={selection}
+                value={selection}
                 onValueChange={setSelection}
                 buttons={buttons}></SegmentedButtons>
             <TextInput style={Styles.disDu}
@@ -62,13 +67,13 @@ export default function AddWorkOut() {
                     </Pressable>
                 </Modal>
             </Portal>
-            <Button mode="contained-tonal" style={{marginTop:30}} onPress={showModal} icon="calendar">
+            <Button mode="contained-tonal" style={{ marginTop: 30 }} onPress={showModal} icon="calendar">
                 {date ? date : ' '}
             </Button>
-            <Button mode="contained tonal"  style={{marginTop:30}}>Add WorkOut</Button>
+            <Button mode="contained tonal" style={{ marginTop: 30 }} onPress={addWork}>Add WorkOut</Button>
 
 
 
-            </SafeAreaView>
+        </SafeAreaView>
     );
 }

@@ -1,4 +1,4 @@
-import { StatusBar, StyleSheet } from "react-native"
+import { StatusBar, StyleSheet } from "react-native";
 
 
 export default Styles = StyleSheet.create({
@@ -25,5 +25,21 @@ export default Styles = StyleSheet.create({
     },
     set:{
         justifyContent: 'space-between'
-    }
+    },
+    list:{
+        flex:1,
+        margin: 20,
+        marginTop:50,
+
+    },
+    
+     border:{
+        borderWidth: 1, 
+        borderColor: 'black', 
+        borderRadius: 15, 
+        padding: 20, 
+        marginBottom: 20,
+
+     }
 })
+

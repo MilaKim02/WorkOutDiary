@@ -17,6 +17,7 @@ export default function App() {
   
   const [workout, setWorkout] = useState([]);
 
+  console.log(workout);
   return (
     <WorkoutContext.Provider value={{ workout, setWorkout }}>
       
