@@ -40,6 +40,12 @@ export default Styles = StyleSheet.create({
         padding: 20, 
         marginBottom: 20,
 
+     },
+     label: {
+        fontSize: 45,
+        fontFamily: 'Roboto',
+        textAlign: "center",
+        padding: 10,
      }
 })
 

@@ -12,9 +12,11 @@ import Settings from './components/Settings';
 import Styles from './styles/Styles';
 
 
+
 export default function App() {
 
   
+
   const [workout, setWorkout] = useState([]);
 
   console.log(workout);
