@@ -21,11 +21,11 @@ export default function WorkOutList() {
 function Item({ workout }) {
     return (
       <View style={Styles.border}>
-        <Icon source={workout.iconId}size={24}></Icon>
+        <Icon source={workout.selection}size={24}></Icon>
         <Text>{workout.date}</Text>
         <Text>{('Distance: ') + workout.distance + (' km') }</Text>
         <Text>{('Duration: ') + workout.duration + (' min.')}</Text>
-        <Text>{workout.selection}</Text>
+       
         
         
         
