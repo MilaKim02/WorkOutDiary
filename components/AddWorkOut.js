@@ -1,5 +1,5 @@
 import { Pressable, View } from "react-native";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Button, Modal, Portal, Text, TextInput, SegmentedButtons } from "react-native-paper";
 import { Calendar } from "react-native-calendars";
 import Styles from "../styles/Styles";
@@ -17,7 +17,16 @@ export default function AddWorkOut() {
     // if (!loaded) {
     //     return (<Text>Loading</Text>)
     // }
+const allTest= [
+    {distance: 2, duration:3, selection: 'walk', date: '1.12.2023'},
+    {distance: 2, duration:3, selection: 'swim', date: '6.3.2023'},
+    {distance: 2, duration:3, selection: 'walk', date: '8.5.2023'},
+    
+]
+useEffect(() => {
+    setWorkout((prev) => [...prev,...allTest]);
 
+}, []);
 
     const buttons = [
         { label: 'Walk', icon: 'walk', value: 'walk' },

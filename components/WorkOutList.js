@@ -8,21 +8,32 @@ import Styles from "../styles/Styles";
 export default function WorkOutList() {
 
   const { workout } = useContext(WorkoutContext);
-  const {units} = useContext(UnitsContext);
+  // const {units} = useContext(UnitsContext);
 
- 
+
+  function sum(sport) {
+    let summa = 0;
+    for (let i = 0; i < workout.length; i++) {
+      if (workout[i].selection === sport) {
+        summa += +workout[i].distance;
+      }
+    }
+return summa;
+  }
+
+
 
   return (
 
     <View style={Styles.list}>
-      <Chip icon='walk'>Km</Chip>
-      <Chip icon='bike'>Km</Chip>
-      <Chip icon='swim'>Km</Chip>
+      <Chip icon='walk'> {sum('walk')}Km</Chip>
+      <Chip icon='bike'>{sum('bike')}Km</Chip>
+      <Chip icon='swim'> {sum('swim')}Km</Chip>
       <FlatList
         data={workout}
         renderItem={({ item }) => <Item workout={item} />} />
     </View>
-    
+
   );
 }
 

@@ -5,7 +5,7 @@ import Styles from "../styles/Styles";
 import { WorkoutContext, UnitsContext } from './Contexts';
 
 
-export default function AddWorkOut() {
+export default function Settings() {
     
     const [value, setValue] = React.useState('kilometers');
     Alert.alert('Units changed to ' + value);
