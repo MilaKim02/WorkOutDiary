@@ -34,11 +34,11 @@ export default Styles = StyleSheet.create({
     },
     
      border:{
-        borderWidth: 1, 
-        borderColor: 'black', 
-        borderRadius: 15, 
-        padding: 20, 
-        marginBottom: 20,
+       
+      
+       
+        padding: 5, 
+        marginBottom: 10,
 
      },
      label: {

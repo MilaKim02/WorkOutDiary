@@ -1,41 +1,32 @@
 import * as React from 'react';
-import { View } from 'react-native';
+import { Alert, View } from 'react-native';
 import { RadioButton, Text } from 'react-native-paper';
 import Styles from "../styles/Styles";
+import { WorkoutContext, UnitsContext } from './Contexts';
 
 
-const Setting = () => {
-    const [checked, setChecked] = React.useState('first');
+export default function AddWorkOut() {
+    
+    const [value, setValue] = React.useState('kilometers');
+    Alert.alert('Units changed to ' + value);
+
 
     return (
-        <View style={Styles.radioButton}>
-            <Text variant='headlineLarge'
-                style={{ padding: 20 }}> Settings</Text>
+        <View >
             <Text variant='headlineSmall'
-                style={{ padding: 20 }}> Units</Text>
-
-            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-            <Text>Kilometers</Text>
-                <RadioButton
-                    style={Styles.radioButton}
-                    value="first"
-                    status={checked === 'first' ? 'checked' : 'unchecked'}
-                    onPress={() => setChecked('first')}
-                />
-                
-            </View>
-            <View style={{flexDirection: 'row', alignItems: 'center'}}>
-            <Text>Miles</Text>
-            <RadioButton
-
-                mode='enabled'
-                value="second"
-                status={checked === 'second' ? 'checked' : 'unchecked'}
-                onPress={() => setChecked('second')}
-            />
-              </View>
+                style={{ padding: 20 }}> Change: </Text>
+            <RadioButton.Group onValueChange={newValue => setValue(newValue)} value={value}>
+                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                    <Text>Kilometers</Text>
+                    <RadioButton value="kilometers" />
+                </View>
+                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                    <Text>Miles</Text>
+                    <RadioButton value="miles" />
+                </View>
+            </RadioButton.Group>
         </View>
-    );
-};
+    )
 
-export default Setting;
+
+}

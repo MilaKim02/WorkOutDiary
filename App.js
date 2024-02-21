@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { WorkoutContext } from './components/Contexts';
+import { WorkoutContext, UnitsContext } from './components/Contexts';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Icon, MD3LightTheme, PaperProvider } from 'react-native-paper';
 import { NavigationContainer } from '@react-navigation/native';
@@ -18,17 +18,20 @@ export default function App() {
   
 
   const [workout, setWorkout] = useState([]);
+  const [units, setUnits] = useState('');
+  
 
-  console.log(workout);
+  console.log(workout, units);
   return (
     <WorkoutContext.Provider value={{ workout, setWorkout }}>
+      <UnitsContext.Provider value ={{units, setUnits}}>
       
         <PaperProvider theme={MD3LightTheme}>
           <SafeAreaProvider>
             <Navigation />
           </SafeAreaProvider>
         </PaperProvider>
-    
+        </UnitsContext.Provider>
     </WorkoutContext.Provider>
   );
 }

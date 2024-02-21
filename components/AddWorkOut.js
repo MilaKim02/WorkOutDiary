@@ -1,16 +1,16 @@
 import { Pressable, View } from "react-native";
 import { useContext, useState } from "react";
-import { Button, Modal, Portal,Text, TextInput,SegmentedButtons } from "react-native-paper";
+import { Button, Modal, Portal, Text, TextInput, SegmentedButtons } from "react-native-paper";
 import { Calendar } from "react-native-calendars";
 import Styles from "../styles/Styles";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { WorkoutContext } from "./Contexts";
+import { WorkoutContext, UnitsContext } from "./Contexts";
 import { useFonts } from 'expo-font';
 
 
 export default function AddWorkOut() {
 
-        // const [loaded] = useFonts({
+    // const [loaded] = useFonts({
     //     Roboto: require('../fonts/Roboto-Italic.ttf')
     // });
 
@@ -35,6 +35,7 @@ export default function AddWorkOut() {
     const hideModal = () => setVisible(false);
 
     const { setWorkout } = useContext(WorkoutContext);
+    const { setUnits } = useContext(UnitsContext);
 
     function dateSelected(day) {
         const selectedDate = new Date(day.dateString);
@@ -42,12 +43,12 @@ export default function AddWorkOut() {
         setDate(selectedDate.toLocaleDateString('fi-FI'));
     }
 
-
     function addWork() {
-        setWorkout(prev => [...prev, { distance, duration, date , selection}]);
 
-
-
+        setWorkout(prev => [...prev, { distance, duration, date, selection }]);
+        setDistance('');
+        setDuration('');
+        setDate('');
     }
     return (
         <SafeAreaView style={Styles.container}>
@@ -56,7 +57,6 @@ export default function AddWorkOut() {
                 value={selection}
                 onValueChange={setSelection}
                 buttons={buttons}
-               
             ></SegmentedButtons>
             <TextInput style={Styles.disDu}
                 keyboardType="number-pad"
@@ -83,9 +83,6 @@ export default function AddWorkOut() {
                 {date ? date : ' '}
             </Button>
             <Button mode="contained tonal" style={{ marginTop: 30 }} onPress={addWork}>Add WorkOut</Button>
-
-
-
         </SafeAreaView>
     );
 }
