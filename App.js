@@ -18,7 +18,7 @@ export default function App() {
   
 
   const [workout, setWorkout] = useState([]);
-  const [units, setUnits] = useState('');
+  const [units, setUnits] = useState('km');
   
 
   console.log(workout, units);

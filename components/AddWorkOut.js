@@ -1,4 +1,4 @@
-import { Pressable, View } from "react-native";
+import { Pressable, View, Alert } from "react-native";
 import { useContext, useEffect, useState } from "react";
 import { Button, Modal, Portal, Text, TextInput, SegmentedButtons } from "react-native-paper";
 import { Calendar } from "react-native-calendars";
@@ -18,9 +18,9 @@ export default function AddWorkOut() {
     //     return (<Text>Loading</Text>)
     // }
 const allTest= [
-    {distance: 2, duration:3, selection: 'walk', date: '1.12.2023'},
-    {distance: 2, duration:3, selection: 'swim', date: '6.3.2023'},
-    {distance: 2, duration:3, selection: 'walk', date: '8.5.2023'},
+    {distance:2, duration:3, selection: 'walk', date: '2.2.2023'},
+    {distance: 3, duration:3, selection: 'swim', date: '3.3.2023'},
+    {distance: 4, duration:3, selection: 'walk', date: '4.4.2023'},
     
 ]
 useEffect(() => {
@@ -44,7 +44,7 @@ useEffect(() => {
     const hideModal = () => setVisible(false);
 
     const { setWorkout } = useContext(WorkoutContext);
-    const { setUnits } = useContext(UnitsContext);
+    // const { units, setUnits } = useContext(UnitsContext);
 
     function dateSelected(day) {
         const selectedDate = new Date(day.dateString);
@@ -53,12 +53,18 @@ useEffect(() => {
     }
 
     function addWork() {
+        if (!distance || !duration || !date) {
+            Alert.alert('Please fill in all fields');
+
+        } else {
 
         setWorkout(prev => [...prev, { distance, duration, date, selection }]);
         setDistance('');
         setDuration('');
         setDate('');
+       }
     }
+    //{'Distance ' + units}
     return (
         <SafeAreaView style={Styles.container}>
             <Text variant='headlineLarge' style={Styles.label}> Work Out</Text>
