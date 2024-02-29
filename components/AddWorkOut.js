@@ -1,32 +1,23 @@
-import { Pressable, View, Alert } from "react-native";
+import { Pressable, Alert } from "react-native";
 import { useContext, useEffect, useState } from "react";
 import { Button, Modal, Portal, Text, TextInput, SegmentedButtons } from "react-native-paper";
 import { Calendar } from "react-native-calendars";
 import Styles from "../styles/Styles";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { WorkoutContext, UnitsContext } from "./Contexts";
-import { useFonts } from 'expo-font';
-
+import { WorkoutContext } from "./Contexts";
 
 export default function AddWorkOut() {
 
-    // const [loaded] = useFonts({
-    //     Roboto: require('../fonts/Roboto-Italic.ttf')
-    // });
+    const allTest = [
+        { distance: 2, duration: 3, selection: 'walk', date: '2.2.2023' },
+        { distance: 3, duration: 3, selection: 'swim', date: '3.3.2023' },
+        { distance: 4, duration: 3, selection: 'walk', date: '4.4.2023' },
+    ]
 
-    // if (!loaded) {
-    //     return (<Text>Loading</Text>)
-    // }
-const allTest= [
-    {distance:2, duration:3, selection: 'walk', date: '2.2.2023'},
-    {distance: 3, duration:3, selection: 'swim', date: '3.3.2023'},
-    {distance: 4, duration:3, selection: 'walk', date: '4.4.2023'},
-    
-]
-useEffect(() => {
-    setWorkout((prev) => [...prev,...allTest]);
+    useEffect(() => {
+        setWorkout((prev) => [...prev, ...allTest]);
 
-}, []);
+    }, []);
 
     const buttons = [
         { label: 'Walk', icon: 'walk', value: 'walk' },
@@ -39,12 +30,10 @@ useEffect(() => {
     const [visible, setVisible] = useState(false);
     const [date, setDate] = useState('');
 
-
     const showModal = () => setVisible(true);
     const hideModal = () => setVisible(false);
 
     const { setWorkout } = useContext(WorkoutContext);
-    // const { units, setUnits } = useContext(UnitsContext);
 
     function dateSelected(day) {
         const selectedDate = new Date(day.dateString);
@@ -57,17 +46,16 @@ useEffect(() => {
             Alert.alert('Please fill in all fields');
 
         } else {
-
-        setWorkout(prev => [...prev, { distance, duration, date, selection }]);
-        setDistance('');
-        setDuration('');
-        setDate('');
-       }
+            setWorkout(prev => [...prev, { distance, duration, date, selection }]);
+            setDistance('');
+            setDuration('');
+            setDate('');
+        }
     }
-    //{'Distance ' + units}
+
     return (
         <SafeAreaView style={Styles.container}>
-            <Text variant='headlineLarge' style={Styles.label}> Work Out</Text>
+            <Text variant='headlineLarge' style={Styles.label}> WorkOut</Text>
             <SegmentedButtons style={Styles.segbut}
                 value={selection}
                 onValueChange={setSelection}
@@ -87,17 +75,22 @@ useEffect(() => {
                 value={duration}
                 onChangeText={setDuration}
             ></TextInput>
-            <Portal>
-                <Modal visible={visible} onDismiss={hideModal}>
+            <Portal >
+                <Modal visible={visible} onDismiss={hideModal} >
                     <Calendar onDayPress={dateSelected}></Calendar>
                     <Pressable onPress={() => setVisible(true)}>
                     </Pressable>
                 </Modal>
             </Portal>
-            <Button mode="contained-tonal" style={{ marginTop: 30 }} onPress={showModal} icon="calendar">
-                {date ? date : ' '}
+            <Button mode="contained-tonal"
+                style={Styles.button}
+                onPress={showModal}
+                icon="calendar">
+                {date ? date : ' Add Date'}
             </Button>
-            <Button mode="contained tonal" style={{ marginTop: 30 }} onPress={addWork}>Add WorkOut</Button>
+            <Button mode="contained tonal"
+                style={Styles.button2}
+                onPress={addWork}>Add WorkOut</Button>
         </SafeAreaView>
     );
 }
